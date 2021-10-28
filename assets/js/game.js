@@ -66,7 +66,10 @@ while(enemyHealth > 0 && playerHealth > 0) {
 
 }};
 
-
+var startGame = function() {
+    playerHealth = 100;
+    playerAttack = 10;
+    playerMoney = 10;
 for (var i = 0; i < enemyNames.length; i++) {
     if (playerHealth > 0) {
         window.alert("welcome to robot gladiators! round " + (i + 1));
@@ -78,5 +81,25 @@ for (var i = 0; i < enemyNames.length; i++) {
         window.alert("you have lost your robot battle");
         break;
     }
-
+    endGame();
+}
 };
+
+var endGame = function(){
+    window.alert("the game has ended. let's see how you did");
+    if (playerHealth > 0) {
+        window.alert("good job, you survived the game. your score is " + playerMoney);
+    }
+    else {
+        window.alert("you lost in your robot battle");
+    }
+    var playAgainConfirm = window.confirm("would you like to play again")
+    if (playAgainConfirm) {
+        startGame();
+    }
+    else {
+        window.alert("thanks for playing RBG. come back again soon " + playerName)
+    }
+}
+
+startGame();
