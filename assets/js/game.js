@@ -76,6 +76,9 @@ for (var i = 0; i < enemyNames.length; i++) {
         var pickedEnemyName = enemyNames[i];
         enemyHealth = 50;
         fight(pickedEnemyName);
+        if (playerHealth > 0 && i < enemyNames.length - 1) {
+            shop();
+        }
     }
     else {
         window.alert("you have lost your robot battle");
@@ -98,8 +101,40 @@ var endGame = function(){
         startGame();
     }
     else {
-        window.alert("thanks for playing RBG. come back again soon " + playerName)
+        window.alert("thanks for playing RBG. come back again soon " + playerName);
     }
-}
-
+};
+var shop = function() {
+    var shopOptionPrompt = window.prompt(
+        "would you like to REFILL your health, UPGRADE your attack, or LEAVE the store? please enter one: 'refill', 'upgrade', or 'leave' to make a choice"
+    );
+    switch (shopOptionPrompt) {
+        case "REFILL":
+        case "refill":
+            if (playerMoney > 7) {
+            window.alert("refilling players health by 20 for 7 dollars");
+            playerHealth = playerHealth + 20;
+            playerMoney = playerMoney - 7;
+            }
+            else {"you don't have enough money"}
+            break;
+        case "UPGRADE":
+        case "upgrade":
+            if (playerMoney > 7) {
+            window.alert("upgrade player's attack by 6 for 7 dollars");
+            playerAttack = playerAttack + 6;
+            playerMoney = playerMoney - 7;
+            }
+            else {"you don't have enough money"}
+            break;
+        case "LEAVE":
+        case "leave":
+            window.alert("leaving the store");
+            break;
+        default:
+            window.alert("you did not pick a valid option. try again");
+            shop();
+            break;
+    }
+};
 startGame();
