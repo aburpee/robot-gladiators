@@ -75,14 +75,14 @@ for (var i = 0; i < enemyNames.length; i++) {
         window.alert("welcome to robot gladiators! round " + (i + 1));
         var pickedEnemyName = enemyNames[i];
         enemyHealth = 50;
-        fight(enemyNames[i]);
+        fight(pickedEnemyName);
     }
     else {
         window.alert("you have lost your robot battle");
         break;
     }
-    endGame();
 }
+endGame();
 };
 
 var endGame = function(){
