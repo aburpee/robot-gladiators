@@ -69,6 +69,7 @@ var startGame = function() {
 for (var i = 0; i < enemyInfo.length; i++) {
     if (playerInfo.health > 0) {
         window.alert("welcome to robot gladiators! round " + (i + 1));
+        debugger;
         var pickedEnemyObj = enemyInfo[i];
         pickedEnemyObj.health = randomNumber(40,60);
         fight(pickedEnemyObj);
@@ -112,7 +113,7 @@ var shop = function() {
         case "UPGRADE":
         case "upgrade":
             playerInfo.upgradeAttack();
-            else {"you don't have enough money"}
+            window.alert("you don't have enough money");
             break;
         case "LEAVE":
         case "leave":
@@ -129,8 +130,19 @@ var shop = function() {
     return value;
 };
 
+var getPlayerName = function() {
+    var name = "";
+        while (name === "" || name === null) {
+            name = prompt("what is your robot's name")
+        }
+
+
+    console.log("your robot's name is " + name);
+    return name;
+}
+
 var playerInfo = {
-    name: window.prompt("what is your robot's name?"), 
+    name: getPlayerName(), 
     health: 100,
     attack: 10,
     money: 10,
