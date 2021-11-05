@@ -27,15 +27,15 @@ while(enemyHealth > 0 && playerHealth > 0) {
     
         if (confirmSkip) {
             window.alert("no fight between " + playerName + " and " + enemyName + " today");
-            playerMoney = playerMoney - 10;
+            playerMoney = Math.max(0,playerMoney - 10);
             console.log(playerName + " has " + playerMoney + " money left.");
             break;
     }
     }
     // else if (promptFight === "FIGHT" || promptFight === "fight") {
 
-
-    enemyHealth = enemyHealth - playerAttack;
+    var damage = randomNumber(playerAttack - 3, playerAttack);
+    enemyHealth = Math.max(0, enemyHealth - damage);
     console.log(
         playerName + " attacked " + enemyName + ". " + enemyName + " now has " + enemyHealth + " health remained."
     );
@@ -49,7 +49,8 @@ while(enemyHealth > 0 && playerHealth > 0) {
         // window.alert(enemyName + " still has " + enemyHealth + " health left.");
     }
 
-    playerHealth = playerHealth - enemyAttack;
+    var damage = randomNumber(enemyAttack - 3, enemyAttack);
+    playerHealth = Math.max(0,playerHealth - damage);
     console.log(
         enemyName + " attacked " + playerName + ". " + playerName + " now has " + playerHealth + " health remaining."
     );
@@ -74,7 +75,7 @@ for (var i = 0; i < enemyNames.length; i++) {
     if (playerHealth > 0) {
         window.alert("welcome to robot gladiators! round " + (i + 1));
         var pickedEnemyName = enemyNames[i];
-        enemyHealth = 50;
+        enemyHealth = randomNumber(40,60);
         fight(pickedEnemyName);
         if (playerHealth > 0 && i < enemyNames.length - 1) {
             shop();
@@ -136,5 +137,9 @@ var shop = function() {
             shop();
             break;
     }
+};
+var randomNumber = function() {
+    var value = Math.floor(Math.random() * (max - min + 1) + min);
+    return value;
 };
 startGame();
